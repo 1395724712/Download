@@ -44,6 +44,9 @@ void fileTransferServer::onWriteComplete(const TcpConnectionPtr& conn)
 	}
 	else
 	{
+		msg = "\n\nEOF\n\n";
+		conn->send(msg);
 		conn->shutdown();
 	}
+	LOG_INFO << "send msg is " << msg;
 }
